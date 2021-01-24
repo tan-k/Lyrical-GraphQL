@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import { Link } from 'react-router';
 
 // class based becuase we want some helper methods inside 
 
@@ -20,9 +21,18 @@ class SongList extends Component {
     if (this.props.data.loading) { return <div>Loading...</div>;}
 
     return (
-      <ul className="collection">
-        {this.renderSongs()}
-      </ul>
+      <div>
+        <h2>Song List</h2>
+        <ul className="collection">
+          {this.renderSongs()}
+        </ul>
+        <Link
+          to="/songs/new"
+          className="btn-floating btn-large red right"
+        >
+          <i className="material-icons">add</i>
+        </Link>
+      </div>
     ); 
   }
 }
