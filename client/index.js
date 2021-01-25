@@ -9,8 +9,18 @@ import { ApolloProvider } from 'react-apollo';
 import App from './components/App';
 import SongList from './components/SongList';
 import SongCreate from './components/SongCreate';
+import SongDetail from './components/SongDetail';
 
-const client = new ApolloClient({});
+/**
+ * takes everysingle piece of data and runs it through this function
+ * the stuff that's returned from the function is used to identify
+ * - all id's in the application must be unique if you use this dataIdFromObject
+ * - you must request all ids  of every pieces of query and mutation
+ */
+
+const client = new ApolloClient({
+  dataIdFromObject: o => o.id 
+});
 
 const Root = () => {
   return (
@@ -20,7 +30,7 @@ const Root = () => {
           <IndexRoute component={SongList} />
         </Route>
         <Route path="songs/new" component={SongCreate} />
-
+        <Route path="songs/:id" component={SongDetail} />
       </Router>
     </ApolloProvider>
   );
